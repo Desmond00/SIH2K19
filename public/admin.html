@@ -1,0 +1,24 @@
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+<textarea id="broadcastMessage"></textarea>
+<button id="broadcastButton">Broadcast</button>
+
+<script>
+// Make connection
+var socket = io.connect('http://localhost:4000');
+
+// Query DOM
+var broadcastMessage = document.getElementById('broadcastMessage'),
+    broadcastButton = document.getElementById('broadcastButton');
+
+// Emit events
+broadcastButton.addEventListener('click', function(){
+  socket.emit('broadcastMessage', {
+      message: broadcastMessage.value
+  });
+  broadcastMessage.value = "";
+});
+
+</script>
